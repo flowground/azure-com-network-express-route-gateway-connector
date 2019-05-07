@@ -1,0 +1,193 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "expressRouteGatewayName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Common resource representation.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource ID.",
+                            "type": "string"
+                        },
+                        "location": {
+                            "description": "Resource location.",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "tags": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Resource tags.",
+                            "type": "object"
+                        },
+                        "type": {
+                            "description": "Resource type.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "ExpressRoute gateway resource.",
+            "properties": {
+                "etag": {
+                    "description": "A unique read-only string that changes whenever the resource is updated.",
+                    "readOnly": true,
+                    "type": "string"
+                },
+                "properties": {
+                    "x-ms-client-flatten": true,
+                    "description": "ExpressRoute gateway resource properties.",
+                    "properties": {
+                        "autoScaleConfiguration": {
+                            "description": "Configuration for auto scaling.",
+                            "properties": {
+                                "bounds": {
+                                    "description": "Minimum and maximum number of scale units to deploy.",
+                                    "properties": {
+                                        "max": {
+                                            "description": "Maximum number of scale units deployed for ExpressRoute gateway.",
+                                            "type": "integer"
+                                        },
+                                        "min": {
+                                            "description": "Minimum number of scale units deployed for ExpressRoute gateway.",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "expressRouteConnections": {
+                            "description": "List of ExpressRoute connections to the ExpressRoute gateway.",
+                            "items": {
+                                "allOf": [
+                                    {
+                                        "description": "Reference to another subresource.",
+                                        "properties": {
+                                            "id": {
+                                                "description": "Resource ID.",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "x-ms-azure-resource": true,
+                                        "type": "object"
+                                    }
+                                ],
+                                "description": "ExpressRouteConnection resource.",
+                                "properties": {
+                                    "name": {
+                                        "description": "The name of the resource.",
+                                        "type": "string"
+                                    },
+                                    "properties": {
+                                        "x-ms-client-flatten": true,
+                                        "description": "Properties of the ExpressRouteConnection subresource.",
+                                        "properties": {
+                                            "authorizationKey": {
+                                                "description": "Authorization key to establish the connection.",
+                                                "type": "string"
+                                            },
+                                            "expressRouteCircuitPeering": {
+                                                "description": "The ExpressRoute circuit peering.",
+                                                "properties": {
+                                                    "id": {
+                                                        "description": "The ID of the ExpressRoute circuit peering.",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "provisioningState": {
+                                                "description": "The provisioning state of the resource.",
+                                                "enum": [
+                                                    "Succeeded",
+                                                    "Updating",
+                                                    "Deleting",
+                                                    "Failed"
+                                                ],
+                                                "readOnly": true,
+                                                "type": "string",
+                                                "x-ms-enum": {
+                                                    "modelAsString": true,
+                                                    "name": "ProvisioningState"
+                                                }
+                                            },
+                                            "routingWeight": {
+                                                "description": "The routing weight associated to the connection.",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "expressRouteCircuitPeering"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "name"
+                                ],
+                                "type": "object"
+                            },
+                            "readOnly": true,
+                            "type": "array"
+                        },
+                        "provisioningState": {
+                            "description": "The provisioning state of the resource.",
+                            "enum": [
+                                "Succeeded",
+                                "Updating",
+                                "Deleting",
+                                "Failed"
+                            ],
+                            "readOnly": true,
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "ProvisioningState"
+                            }
+                        },
+                        "virtualHub": {
+                            "description": "The Virtual Hub where the ExpressRoute gateway is or will be deployed.",
+                            "properties": {
+                                "id": {
+                                    "description": "The resource URI for the Virtual Hub where the ExpressRoute gateway is or will be deployed. The Virtual Hub resource and the ExpressRoute gateway resource reside in the same subscription.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "required": [
+                        "virtualHub"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
