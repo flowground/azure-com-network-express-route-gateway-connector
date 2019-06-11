@@ -5,7 +5,7 @@
 A generated **flow**ground connector for the NetworkManagementClient API (version 2018-12-01).
 
 Generated from: https://api.apis.guru/v2/specs/azure.com/network-expressRouteGateway/2018-12-01/swagger.json<br/>
-Generated at: 2019-05-07T17:38:31+03:00
+Generated at: 2019-06-11T18:14:06+03:00
 
 ## API Description
 
